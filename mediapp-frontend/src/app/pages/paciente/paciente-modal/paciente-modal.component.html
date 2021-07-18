@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>Nuevo Paciente</h1>
+<mat-dialog-content>
+    <form [formGroup]="form" #frmPaciente="ngForm">
+        <mat-form-field class="full-width">
+            <span *ngIf="fr.nombres.errors?.required" class="invalido">Introduzca el nombre</span>
+            <span *ngIf="fr.nombres.errors?.minlength" class="invalido">El campo debe tener más de 3 caracteres</span>
+            <input matInput placeholder="Nombres" minlength="3" required formControlName="nombres">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <span *ngIf="fr.apellidos.errors?.required" class="invalido">Introduzca los apellidos</span>
+            <span *ngIf="fr.apellidos.errors?.minlength" class="invalido">El campo debe tener más de 3 caracteres</span>
+            <input matInput placeholder="Apellidos" minlength="3" required formControlName="apellidos">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <input matInput placeholder="E-mail" type="email" formControlName="email">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <span *ngIf="fr.dni.errors?.required" class="invalido">Introduzca el Nº teléfono</span>
+            <span *ngIf="fr.dni.errors?.minlength" class="invalido">El campo debe tener 9 caracteres</span>
+            <span *ngIf="fr.dni.errors?.maxlength" class="invalido">El campo debe tener 9 caracteres</span>
+            <input matInput placeholder="Teléfono" required formControlName="telefono">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <span *ngIf="fr.dni.errors?.required" class="invalido">Introduzca el Nº DNI</span>
+            <span *ngIf="fr.dni.errors?.minlength" class="invalido">El campo debe tener 8 caracteres</span>
+            <span *ngIf="fr.dni.errors?.maxlength" class="invalido">El campo debe tener 8 caracteres</span>
+            <input matInput placeholder="DNI" minlength="8" required formControlName="dni">
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="dispose()">Cancelar</button>
+  <button mat-button color="primary" (click)="submit()" [disabled]="frmPaciente.invalid">Guardar</button>
+</mat-dialog-actions>
